@@ -10,7 +10,20 @@ services:
         environment: 
             - TZ=Asia/Shanghai
         privileged: true
-    php5.6:
+    php5.6_1:
+        build: ./php5.6
+        image: php:5.6-fpm-cong
+        volumes:
+            - ./php5.6/php.ini:/usr/local/etc/php/php.ini
+            - ./php5.6/www.conf:/usr/local/etc/php-fpm.d/www.conf
+            - /d/projects/php/wms:/wms
+            - /d/log/php5.6_wms:/usr/local/log
+        cap_add:
+            - SYS_PTRACE
+        environment: 
+            - TZ=Asia/Shanghai
+            - LANG=C.UTF-8
+    php5.6_2:
         build: ./php5.6
         image: php:5.6-fpm-cong
         volumes:
